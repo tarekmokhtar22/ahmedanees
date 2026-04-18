@@ -2,43 +2,37 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الاختبارات والتقويم - Glassmorphism & Firebase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>منصة الاختبارات والتقويم الاحترافية</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/index.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/default.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <script>
-    window.addEventListener('load', function() {
-      MobileDragDrop.polyfill({ dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride });
-    });
-    
-    // Tailwind Configuration
+    // إعدادات Tailwind للوضع الداكن والألوان
     tailwind.config = { 
         darkMode: 'class',
         theme: {
             extend: {
                 colors: {
-                    primary: '#1856FF',
-                    secondary: '#3A344E',
-                    success: '#07CA6B',
-                    warning: '#E89558',
-                    danger: '#EA2143',
-                    tx: '#141414',
-                    surfaceLight: 'rgba(255, 255, 255, 0.65)',
-                    surfaceDark: 'rgba(30, 41, 59, 0.65)'
+                    primary: '#2563EB',
+                    primaryDark: '#1E40AF',
+                    secondary: '#334155',
+                    success: '#10B981',
+                    warning: '#F59E0B',
+                    danger: '#EF4444',
+                    backgroundLight: '#F8FAFC',
+                    backgroundDark: '#0F172A',
                 },
                 fontFamily: {
-                    sans: ['"Plus Jakarta Sans"', '"Cairo"', 'sans-serif'],
+                    sans: ['"Cairo"', '"Plus Jakarta Sans"', 'sans-serif'],
                 }
             }
         }
     };
     
-    // MathJax Configuration
+    // إعدادات MathJax لكتابة المعادلات الرياضية
     MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
       svg: { fontCache: 'global' }
@@ -48,103 +42,93 @@
   
   <style>
     body { 
-        font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif; 
-        color: #141414;
-        background: linear-gradient(-45deg, #e0e7ff, #f3e8ff, #dbeafe, #f8fafc);
-        background-size: 400% 400%;
-        animation: gradient-animation 20s ease infinite;
+        font-family: 'Cairo', sans-serif; 
+        color: #1E293B;
+        background: linear-gradient(135deg, #F0F9FF 0%, #E0E7FF 100%);
         min-height: 100vh;
         margin: 0;
+        overflow-x: hidden;
     }
     .dark body {
-        color: #ffffff;
-        background: linear-gradient(-45deg, #0f172a, #1e1b4b, #1e3a8a, #020617);
-        background-size: 400% 400%;
-        animation: gradient-animation 20s ease infinite;
-    }
-    
-    @keyframes gradient-animation { 
-        0% { background-position: 0% 50%; } 
-        50% { background-position: 100% 50%; } 
-        100% { background-position: 0% 50%; } 
+        color: #F8FAFC;
+        background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%);
     }
 
     .glass-panel {
-        background: rgba(255, 255, 255, 0.65);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
     }
     .dark .glass-panel {
-        background: rgba(30, 41, 59, 0.65);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
     }
 
     .glass-input {
-        background: rgba(255, 255, 255, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(226, 232, 240, 0.8);
         transition: all 0.3s ease;
-        color: #141414;
+        color: #1E293B;
     }
     .dark .glass-input {
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #ffffff;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(51, 65, 85, 0.8);
+        color: #F8FAFC;
     }
     .glass-input:focus {
-        border-color: #1856FF;
-        box-shadow: 0 0 0 3px rgba(24, 86, 255, 0.2);
+        border-color: #2563EB;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         outline: none;
-        background: rgba(255, 255, 255, 0.8);
     }
     .dark .glass-input:focus {
-        background: rgba(15, 23, 42, 0.8);
-        box-shadow: 0 0 0 3px rgba(24, 86, 255, 0.4);
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
     }
 
     .glass-btn-primary {
-        background: #1856FF;
-        color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 4px 15px rgba(24, 86, 255, 0.3);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        color: white;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        transition: all 0.3s ease;
     }
     .glass-btn-primary:hover:not(:disabled) {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(24, 86, 255, 0.5);
-        background: #2563EB;
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
     }
     .glass-btn-primary:disabled {
         opacity: 0.6;
         cursor: not-allowed;
-        box-shadow: none;
+        transform: none;
     }
 
-    .glass-card-hover {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    .glass-card-hover { transition: all 0.3s ease; }
     .glass-card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-        border-color: rgba(24, 86, 255, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1);
     }
-    .dark .glass-card-hover:hover {
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-    }
+    .dark .glass-card-hover:hover { box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4); }
 
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.02); }
-    ::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.2); border-radius: 10px; }
-    .dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 10px; }
+    .dark ::-webkit-scrollbar-thumb { background: #475569; }
 
-    @keyframes fadeInUp { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-    .animate-fade-in-up { animation: fadeInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in { animation: fadeInUp 0.4s ease-out forwards; }
+    
+    /* Fullscreen specific styles */
+    :fullscreen { background: #F8FAFC; overflow-y: auto; }
+    ::backdrop { background: #F8FAFC; }
+    .dark:fullscreen { background: #0F172A; }
+    .dark::backdrop { background: #0F172A; }
+
   </style>
 </head>
-<body class="transition-colors duration-500">
+<body class="transition-colors duration-300">
   <div id="root"></div>
 
   <!-- React & Libraries -->
@@ -152,813 +136,812 @@
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <!-- Notice the data-type="module" to enable import statements in Babel -->
   <script type="text/babel" data-type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     const { useState, useEffect, useRef } = React;
     const { createRoot } = ReactDOM;
 
     // --- Firebase Configuration ---
-    const firebaseConfig = {
+    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
       apiKey: "AIzaSyCZ5uCdQCv3DFIfVaOnl1JgZ5VMP8nfnIQ",
       authDomain: "anes-4dc4d.firebaseapp.com",
       projectId: "anes-4dc4d",
       storageBucket: "anes-4dc4d.firebasestorage.app",
       messagingSenderId: "542884354403",
-      appId: "1:542884354403:web:25a796fa8ec47ae69cdb56",
-      measurementId: "G-9SHNKV0JDD"
+      appId: "1:542884354403:web:25a796fa8ec47ae69cdb56"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-    const targetAppId = firebaseConfig.projectId; // anes-4dc4d
     
-    // Strict Database Paths required for security architecture
+    // إشعار هام: لحل مشكلة الصلاحيات Missing or insufficient permissions
+    // يجب الاعتماد على __app_id الموجود في بيئة التطبيق بدلاً من projectId
+    const targetAppId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    
+    // Strict Database Paths
     const getColRef = (name) => collection(db, 'artifacts', targetAppId, 'public', 'data', name);
     const getDocRef = (name, id) => doc(db, 'artifacts', targetAppId, 'public', 'data', name, id);
 
-    // Default Admin User
     const DEFAULT_ADMIN = {
         id: 'admin_001',
         username: 'admin',
         password: 'admin',
-        role: 'teacher',
-        scores: {},
-        attemptsLeft: {},
-        allowedSections: ['جبر', 'هندسة'],
-        incorrectQuestions: []
+        role: 'teacher'
     };
 
-    // --- Sub-Components ---
+    // --- Utility Components ---
     const MathComponent = ({ text }) => {
       const ref = useRef(null);
       useEffect(() => {
         if (window.MathJax && ref.current) {
-          window.MathJax.typesetPromise([ref.current]).catch((err) => console.log(err));
+          window.MathJax.typesetPromise([ref.current]).catch(err => console.log(err));
         }
       }, [text]);
-      return <span ref={ref} dir="ltr">{text}</span>;
+      return <span ref={ref} dir="auto" className="break-words">{text}</span>;
     };
 
     const SettingsDropdown = ({ setDarkMode, darkMode, handleLogout }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef(null);
+        const [isOpen, setIsOpen] = useState(false);
+        const dropdownRef = useRef(null);
 
-    useEffect(() => {
-        const handleClickOutside = (e) => { if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setIsOpen(false); };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+        useEffect(() => {
+            const handleClickOutside = (e) => { if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setIsOpen(false); };
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => document.removeEventListener("mousedown", handleClickOutside);
+        }, []);
 
-    return (
-        <div className="relative z-50" ref={dropdownRef}>
-            <button onClick={() => setIsOpen(!isOpen)} className="p-3 rounded-xl glass-panel hover:bg-white/80 dark:hover:bg-slate-800/80 transition shadow-sm text-lg relative z-10">
-                ⚙️
-            </button>
-            {isOpen && (
-                <div className="absolute z-[100] left-0 right-auto rtl:right-0 rtl:left-auto mt-2 w-56 glass-panel rounded-xl overflow-hidden animate-fade-in-up shadow-2xl">
-                    {/* تم نقل التعليق إلى هنا داخل الديف لتجنب خطأ الـ Syntax */}
-                    <button onClick={() => { setDarkMode(!darkMode); setIsOpen(false); }} className="w-full text-right px-4 py-3 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 text-sm font-semibold transition">
-                        {darkMode ? 'الوضع الفاتح ☀️' : 'الوضع الداكن 🌙'}
-                    </button>
-                    <div className="border-t border-slate-300/30 dark:border-slate-600/30"></div>
-                    <button onClick={() => { handleLogout(); setIsOpen(false); }} className="w-full text-right px-4 py-3 text-danger hover:bg-danger/10 text-sm font-bold transition">
-                        تسجيل الخروج 🚪
-                    </button>
-                </div>
-            )}
-        </div>
-    );
-};
-
-    const SectionBuilder = ({ section, sectionIndex, onUpdateSection, onDeleteSection, onAddQuestion, onUpdateQuestion, onUpdateOption, onUpdateCorrectAnswer, onDeleteQuestion }) => {
         return (
-            <div className="glass-panel p-6 rounded-2xl mb-6 border-2 border-dashed border-primary/40 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-2 h-full bg-primary opacity-50"></div>
-                <div className="flex justify-between items-start mb-6">
-                    <h3 className="text-xl font-bold text-primary dark:text-blue-400">قسم {sectionIndex + 1}</h3>
-                    <button onClick={() => onDeleteSection(sectionIndex)} className="text-danger hover:text-white hover:bg-danger text-sm px-3 py-1 rounded-lg border border-danger/30 transition shadow-sm">حذف قسم</button>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                     <input type="text" placeholder="عنوان قسم" value={section.title} onChange={(e) => onUpdateSection(sectionIndex, 'title', e.target.value)} className="glass-input p-3 rounded-xl w-full font-medium" />
-                     <select value={section.difficulty} onChange={(e) => onUpdateSection(sectionIndex, 'difficulty', e.target.value)} className="glass-input p-3 rounded-xl w-full font-medium">
-                         <option value="متوسط">مستوى الصعوبة: متوسط</option>
-                         <option value="سهل">مستوى الصعوبة: سهل</option>
-                         <option value="صعب">مستوى الصعوبة: صعب</option>
-                    </select>
-                </div>
-                <div className="space-y-6">
-                    {section.questions.map((q, qIndex) => (
-                        <div key={q.id} className="bg-white/40 dark:bg-slate-800/40 backdrop-blur-md p-5 rounded-xl border border-white/50 dark:border-slate-700/50 shadow-sm relative">
-                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
-                                <h4 className="font-bold text-lg bg-primary/10 text-primary px-3 py-1 rounded-lg">سؤال {qIndex + 1}</h4>
-                                <div className="flex items-center gap-4">
-                                    <label className="flex items-center text-sm font-semibold cursor-pointer text-warning">
-                                        <input type="checkbox" checked={q.isDifficult || false} onChange={(e) => onUpdateQuestion(sectionIndex, qIndex, 'isDifficult', e.target.checked)} className="mr-2 w-4 h-4 accent-warning"/> 
-                                        سؤال صعب
-                                    </label>
-                                    <button onClick={() => onDeleteQuestion(sectionIndex, qIndex)} className="text-danger bg-danger/10 hover:bg-danger hover:text-white p-1.5 rounded-lg transition" title="حذف السؤال">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <textarea value={q.text} onChange={(e) => onUpdateQuestion(sectionIndex, qIndex, 'text', e.target.value)} placeholder="نص السؤال (ادعم صيغ $MathJax$ للرياضيات)" className="glass-input w-full p-4 rounded-xl mb-3 min-h-[100px] resize-y"></textarea>
-                            <input type="text" placeholder="رابط صورة للسؤال (اختياري)" value={q.imageUrl} onChange={(e) => onUpdateQuestion(sectionIndex, qIndex, 'imageUrl', e.target.value)} className="glass-input w-full p-3 rounded-xl mb-4 text-sm" />
-                            {q.imageUrl && <img src={q.imageUrl} className="w-32 h-32 object-contain mx-auto border border-white/20 rounded-lg shadow-md mb-4" />}
-                            
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                {q.options.map((opt, oIndex) => (
-                                    <div key={opt.id} className={`flex items-center p-2 rounded-xl border transition-all ${q.correctAnswer === opt.id ? 'border-success bg-success/10' : 'border-white/30 dark:border-slate-600/30 bg-white/20 dark:bg-slate-800/20'}`}>
-                                        <input type="radio" name={`ans-${q.id}`} checked={q.correctAnswer === opt.id} onChange={() => onUpdateCorrectAnswer(sectionIndex, qIndex, opt.id)} className="mx-3 w-5 h-5 accent-success cursor-pointer"/>
-                                        <div className="flex flex-col w-full gap-2 pr-2">
-                                            <input type="text" value={opt.text} onChange={(e) => onUpdateOption(sectionIndex, qIndex, oIndex, 'text', e.target.value)} placeholder={`الخيار ${String.fromCharCode(97 + oIndex)}`} className="glass-input p-2 rounded-lg w-full text-sm font-medium" />
-                                            <input type="text" placeholder="رابط صورة (اختياري)" value={opt.imageUrl} onChange={(e) => onUpdateOption(sectionIndex, qIndex, oIndex, 'imageUrl', e.target.value)} className="glass-input p-2 rounded-lg w-full text-xs" />
-                                        </div>
-                                        {opt.imageUrl && <img src={opt.imageUrl} className="w-12 h-12 object-cover rounded-md mr-2 shadow-sm border border-white/20" />}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <button onClick={() => onAddQuestion(sectionIndex)} className="mt-6 glass-btn-primary w-full p-3 rounded-xl font-bold flex justify-center items-center gap-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
-                    إضافة سؤال جديد للقسم
+            <div className="relative" ref={dropdownRef}>
+                <button onClick={() => setIsOpen(!isOpen)} className="p-3 rounded-xl glass-panel hover:bg-slate-100 dark:hover:bg-slate-800 transition shadow-sm text-lg flex items-center justify-center">
+                    ⚙️
                 </button>
+                {isOpen && (
+                    <div className="absolute z-[9999] top-full mt-2 left-0 w-48 glass-panel rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-700">
+                        <button onClick={() => { setDarkMode(!darkMode); setIsOpen(false); }} className="w-full text-right px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-semibold transition border-b border-slate-200 dark:border-slate-700">
+                            {darkMode ? '☀️ الوضع الفاتح' : '🌙 الوضع الداكن'}
+                        </button>
+                        <button onClick={() => { handleLogout(); setIsOpen(false); }} className="w-full text-right px-4 py-3 text-danger hover:bg-red-50 dark:hover:bg-red-900/20 text-sm font-bold transition">
+                            🚪 تسجيل الخروج
+                        </button>
+                    </div>
+                )}
             </div>
         );
     };
 
-    // ----------------------------------------------------
-    // Main App
-    // ----------------------------------------------------
+    // --- Main App ---
     function App() {
-        // --- Firebase State ---
+        // --- State ---
         const [users, setUsers] = useState([]);
         const [tests, setTests] = useState([]);
+        const [categories, setCategories] = useState([]);
         const [levels, setLevels] = useState([]);
-        const [blacklist, setBlacklist] = useState([]);
+        
         const [dbReady, setDbReady] = useState(false);
-        const [dbError, setDbError] = useState('');
         const [authUser, setAuthUser] = useState(null);
 
-        // --- UI & Nav State ---
-        const [currentPage, setCurrentPage] = useState('login');
+        const [currentPage, setCurrentPage] = useState('login'); // login, register, profileSetup, dashboard, test, results
         const [currentUser, setCurrentUser] = useState(null);
-        const [devPage, setDevPage] = useState('dashboard');
-        const [activeTestTab, setActiveTestTab] = useState('جبر');
+        const [devPage, setDevPage] = useState('dashboard'); // dashboard, users, settings
+        
         const [darkMode, setDarkMode] = useState(false);
 
-        // --- Auth Form State ---
-        const [loginUser, setLoginUser] = useState('');
-        const [loginPass, setLoginPass] = useState('');
-        const [loginError, setLoginError] = useState('');
+        // Auth Form
+        const [authUsername, setAuthUsername] = useState('');
+        const [authPassword, setAuthPassword] = useState('');
+        const [authError, setAuthError] = useState('');
+        
+        // Profile Setup (Student First Login)
+        const [setupCategory, setSetupCategory] = useState('');
+        const [setupLevel, setSetupLevel] = useState('');
 
-        // --- Test Creation State ---
+        // Test Creation
         const [showCreateTestForm, setShowCreateTestForm] = useState(false);
         const [editingTestId, setEditingTestId] = useState(null);
-        const [newTestCategory, setNewTestCategory] = useState('جبر');
         const [newTestTitle, setNewTestTitle] = useState('');
-        const [newTestDifficulty, setNewTestDifficulty] = useState('متوسط');
+        const [newTestCategory, setNewTestCategory] = useState('');
+        const [newTestLevel, setNewTestLevel] = useState('');
         const [newTestDuration, setNewTestDuration] = useState('');
-        const [newTestMaxAttempts, setNewTestMaxAttempts] = useState('');
-        const [newTestPrerequisite, setNewTestPrerequisite] = useState('');
-        const [newTestQuestionOrder, setNewTestQuestionOrder] = useState('ordered');
-        const [newTestSections, setNewTestSections] = useState([]);
-        const [newLevelName, setNewLevelName] = useState('');
+        const [newTestMaxAttempts, setNewTestMaxAttempts] = useState('3');
+        const [newTestQuestions, setNewTestQuestions] = useState([]);
 
-        // --- Test Taking State ---
+        // Category/Level Management
+        const [newCategoryName, setNewCategoryName] = useState('');
+        const [newLevelName, setNewLevelName] = useState('');
+        const [selectedCategoryForLevel, setSelectedCategoryForLevel] = useState('');
+
+        // Active Tabs in Teacher Dash
+        const [activeCategoryTab, setActiveCategoryTab] = useState('');
+
+        // Test Runner
         const [selectedTest, setSelectedTest] = useState(null);
         const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
         const [answers, setAnswers] = useState({});
         const [timer, setTimer] = useState(0);
         const [quizSubmitted, setQuizSubmitted] = useState(false);
+        const [isExamCancelled, setIsExamCancelled] = useState(false);
 
-        // Helpers
-        const testsByCategory = {
-            'جبر': tests.filter(t => t.category === 'جبر'),
-            'هندسة': tests.filter(t => t.category === 'هندسة')
-        };
-        const flattenQuestions = (sections) => sections ? sections.flatMap(s => s.questions || []) : [];
-
-        // Dark mode setup
+        // Dark mode sync
         useEffect(() => {
             document.documentElement.className = darkMode ? 'dark' : '';
         }, [darkMode]);
 
-        // Timer setup
-        useEffect(() => {
-            if (currentPage === 'test' && timer > 0 && !quizSubmitted) {
-                const interval = setInterval(() => setTimer(t => t - 1), 1000);
-                return () => clearInterval(interval);
-            } else if (currentPage === 'test' && timer === 0 && !quizSubmitted) {
-                handleSubmitTest();
-            }
-        }, [currentPage, timer, quizSubmitted]);
-
-        // --- Firebase Init & Listeners ---
+        // Firebase Init
         useEffect(() => {
             const initAuth = async () => {
                 try {
-                    await signInAnonymously(auth);
-                } catch(e) {
-                    console.error("Auth Error: Make sure Anonymous Auth is enabled in Firebase", e);
-                    if (e.code === 'auth/configuration-not-found') {
-                        setDbError('خاصية الدخول المجهول (Anonymous) غير مفعلة في مشروعك.');
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
                     } else {
-                        setDbError('فشل الاتصال: يرجى التحقق من إعدادات Firebase.');
+                        await signInAnonymously(auth);
                     }
-                }
+                } catch(e) { console.error("Auth Error", e); }
             };
             initAuth();
             const unsubscribe = onAuthStateChanged(auth, user => setAuthUser(user));
             return () => unsubscribe();
         }, []);
 
+        // Listeners
         useEffect(() => {
-            if (dbError) return; // Prevent syncing if auth failed
-            if (!authUser) return; // Prevent unauthorized queries
+            if (!authUser) return;
 
             const unsubUsers = onSnapshot(getColRef('users'), snap => {
                 const data = snap.docs.map(d => d.data());
-                if (data.length === 0) {
-                    setDoc(getDocRef('users', DEFAULT_ADMIN.id), DEFAULT_ADMIN);
-                } else {
-                    setUsers(data);
-                }
-            }, err => console.error("Users sync error:", err));
+                if (data.length === 0) setDoc(getDocRef('users', DEFAULT_ADMIN.id), DEFAULT_ADMIN);
+                else setUsers(data);
+            }, e => console.error(e));
 
-            const unsubTests = onSnapshot(getColRef('tests'), snap => {
-                setTests(snap.docs.map(d => d.data()));
-            }, err => console.error(err));
-
-            const unsubLevels = onSnapshot(getColRef('levels'), snap => {
-                setLevels(snap.docs.map(d => d.data()));
-            }, err => console.error(err));
-
-            const unsubBlacklist = onSnapshot(getColRef('blacklist'), snap => {
-                setBlacklist(snap.docs.map(d => d.data().username));
-            }, err => console.error(err));
+            const unsubTests = onSnapshot(getColRef('tests'), snap => setTests(snap.docs.map(d => d.data())), e => console.error(e));
+            const unsubCategories = onSnapshot(getColRef('categories'), snap => {
+                const cats = snap.docs.map(d => d.data());
+                setCategories(cats);
+                if(cats.length > 0 && !activeCategoryTab) setActiveCategoryTab(cats[0].id);
+            }, e => console.error(e));
+            const unsubLevels = onSnapshot(getColRef('levels'), snap => setLevels(snap.docs.map(d => d.data())), e => console.error(e));
             
             setDbReady(true);
-
-            return () => { unsubUsers(); unsubTests(); unsubLevels(); unsubBlacklist(); };
+            return () => { unsubUsers(); unsubTests(); unsubCategories(); unsubLevels(); };
         }, [authUser]);
 
-
-        // --- App Login Logic ---
-        const handleLogin = () => {
-            setLoginError('');
-            if (!loginUser || !loginPass) {
-                setLoginError('يرجى إدخال جميع البيانات');
-                return;
+        // Test Timer & Fullscreen Observer
+        useEffect(() => {
+            let interval = null;
+            if (currentPage === 'test' && timer > 0 && !quizSubmitted && !isExamCancelled) {
+                interval = setInterval(() => setTimer(t => t - 1), 1000);
+            } else if (currentPage === 'test' && timer === 0 && !quizSubmitted && !isExamCancelled) {
+                handleSubmitTest(false);
             }
-            if (blacklist.includes(loginUser)) {
-                setLoginError('تم تقييد حسابك. يرجى مراجعة الإدارة.');
-                return;
-            }
+            return () => clearInterval(interval);
+        }, [currentPage, timer, quizSubmitted, isExamCancelled]);
 
-            let user = users.find(u => u.username === loginUser && u.password === loginPass && (u.role === 'teacher' || u.role === 'supervisor'));
-            if (!user) {
-                user = users.find(u => u.username === loginUser && u.accessCode === loginPass && u.role === 'student');
-            }
+        useEffect(() => {
+            const handleFullScreenChange = () => {
+                if (currentPage === 'test' && !document.fullscreenElement && !quizSubmitted) {
+                    setIsExamCancelled(true);
+                    handleSubmitTest(true); // cancelled
+                }
+            };
+            document.addEventListener('fullscreenchange', handleFullScreenChange);
+            return () => document.removeEventListener('fullscreenchange', handleFullScreenChange);
+        }, [currentPage, quizSubmitted]);
 
-            if (user) {
-                setCurrentUser(user);
-                setCurrentPage('dashboard');
-                setDevPage('dashboard');
+        // --- Core Functions ---
+
+        const handleAuth = async (isRegister) => {
+            setAuthError('');
+            if (!authUsername || !authPassword) return setAuthError('يرجى إدخال اسم المستخدم وكلمة المرور');
+
+            const existingUser = users.find(u => u.username === authUsername);
+
+            if (isRegister) {
+                if (existingUser) return setAuthError('اسم المستخدم موجود بالفعل، الرجاء تسجيل الدخول');
+                
+                const newUser = {
+                    id: 'usr_' + Date.now(),
+                    username: authUsername,
+                    password: authPassword,
+                    role: 'student',
+                    scores: {},
+                    attemptsLeft: {},
+                    incorrectQuestions: [],
+                    category: '',
+                    level: ''
+                };
+                await setDoc(getDocRef('users', newUser.id), newUser);
+                setCurrentUser(newUser);
+                setCurrentPage('profileSetup');
             } else {
-                setLoginError('بيانات الدخول غير صحيحة.');
+                if (!existingUser || existingUser.password !== authPassword) {
+                    return setAuthError('بيانات الدخول غير صحيحة');
+                }
+                setCurrentUser(existingUser);
+                if (existingUser.role === 'student' && (!existingUser.category || !existingUser.level)) {
+                    setCurrentPage('profileSetup');
+                } else {
+                    setCurrentPage('dashboard');
+                }
             }
+        };
+
+        const handleProfileSetup = async () => {
+            if(!setupCategory || !setupLevel) return alert("يرجى اختيار الفرقة والمستوى");
+            const updatedUser = { ...currentUser, category: setupCategory, level: setupLevel };
+            await setDoc(getDocRef('users', currentUser.id), updatedUser);
+            setCurrentUser(updatedUser);
+            setCurrentPage('dashboard');
         };
 
         const handleLogout = () => {
+            if (document.fullscreenElement) document.exitFullscreen().catch(()=>{});
             setCurrentUser(null);
-            setLoginUser('');
-            setLoginPass('');
+            setAuthUsername('');
+            setAuthPassword('');
             setCurrentPage('login');
         };
 
-        // --- Teacher Logic ---
-        const handleGenerateStudent = async () => {
-            const username = prompt("أدخل اسم الطالب الجديد:");
-            if (!username) return;
-            if (users.find(u => u.username === username)) return alert("اسم المستخدم موجود بالفعل!");
-
-            const code = Math.floor(100000 + Math.random() * 900000).toString();
-            const newUser = {
-                id: 'usr_' + Date.now(),
-                username,
-                accessCode: code,
-                role: 'student',
-                scores: {},
-                attemptsLeft: {},
-                allowedSections: ['جبر', 'هندسة'],
-                incorrectQuestions: []
-            };
-            
-            // Save to Firestore
-            await setDoc(getDocRef('users', newUser.id), newUser);
-            alert(`✅ تم إنشاء الحساب بنجاح\nاسم المستخدم: ${username}\nرمز الدخول: ${code}`);
+        // Admin: Settings Data
+        const addCategory = async () => {
+            if(!newCategoryName) return;
+            const cat = { id: 'cat_'+Date.now(), name: newCategoryName };
+            await setDoc(getDocRef('categories', cat.id), cat);
+            setNewCategoryName('');
+            if(!activeCategoryTab) setActiveCategoryTab(cat.id);
+        };
+        const deleteCategory = async (id) => {
+            if(window.confirm("حذف التصنيف؟")) await deleteDoc(getDocRef('categories', id));
+        };
+        const addLevel = async () => {
+            if(!newLevelName || !selectedCategoryForLevel) return alert("حدد التصنيف واسم المستوى");
+            const lvl = { id: 'lvl_'+Date.now(), name: newLevelName, categoryId: selectedCategoryForLevel };
+            await setDoc(getDocRef('levels', lvl.id), lvl);
+            setNewLevelName('');
+        };
+        const deleteLevel = async (id) => {
+            if(window.confirm("حذف المستوى؟")) await deleteDoc(getDocRef('levels', id));
         };
 
-        const addDefaultSection = () => ({ id: 'sec_'+Date.now(), title: 'قسم الأول', difficulty: 'متوسط', questions: [] });
+        // Admin: Backup & Restore
+        const exportJSON = (data, filename) => {
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = filename; a.click();
+            URL.revokeObjectURL(url);
+        };
+        
+        const importJSON = (e, collectionName) => {
+            const file = e.target.files[0];
+            if(!file) return;
+            const reader = new FileReader();
+            reader.onload = async (ev) => {
+                try {
+                    const data = JSON.parse(ev.target.result);
+                    if(Array.isArray(data)) {
+                        for(let item of data) {
+                            if(item.id) await setDoc(getDocRef(collectionName, item.id), item);
+                        }
+                        alert(`تم استيراد ${data.length} عنصر إلى ${collectionName} بنجاح`);
+                    }
+                } catch(err) { alert("خطأ في قراءة الملف"); }
+            };
+            reader.readAsText(file);
+            e.target.value = ''; // reset
+        };
+
+        // Admin: Test Builder
         const createNewQuestion = () => ({
-            id: 'q_'+Date.now(), text: '', imageUrl: '', type: 'mcq', isDifficult: false,
+            id: 'q_'+Date.now(), text: '', imageUrl: '', 
             options: [ {id:'a', text:'', imageUrl:''}, {id:'b', text:'', imageUrl:''}, {id:'c', text:'', imageUrl:''}, {id:'d', text:'', imageUrl:''} ],
             correctAnswer: 'a'
         });
 
-        const resetCreateForm = () => {
-            setNewTestTitle(''); setNewTestDuration(''); setNewTestMaxAttempts(''); setNewTestPrerequisite('');
-            setNewTestDifficulty('متوسط'); setNewTestQuestionOrder('ordered');
-            setNewTestSections([addDefaultSection()]);
-            setShowCreateTestForm(false); setEditingTestId(null);
+        const resetTestForm = () => {
+            setEditingTestId(null); setNewTestTitle(''); setNewTestCategory(''); setNewTestLevel('');
+            setNewTestDuration(''); setNewTestMaxAttempts('3'); setNewTestQuestions([createNewQuestion()]);
+            setShowCreateTestForm(false);
         };
 
-        const handleSaveTest = async () => {
-            if (!newTestTitle || !newTestDuration || !newTestMaxAttempts) return alert("يرجى إكمال البيانات الأساسية للإختبار.");
-            const totalQ = newTestSections.reduce((acc, s) => acc + (s.questions?.length || 0), 0);
-            if (totalQ === 0) return alert('يجب إضافة سؤال واحد على الأقل.');
-
+        const saveTest = async () => {
+            if(!newTestTitle || !newTestCategory || !newTestLevel || !newTestDuration || newTestQuestions.length===0) 
+                return alert("يرجى إكمال جميع حقول الاختبار وإضافة سؤال واحد على الأقل.");
+            
             const testObj = {
                 id: editingTestId || 'test_' + Date.now(),
                 title: newTestTitle,
-                category: newTestCategory,
+                categoryId: newTestCategory,
+                levelId: newTestLevel,
                 duration: parseInt(newTestDuration),
                 maxAttempts: parseInt(newTestMaxAttempts),
-                prerequisitePercentage: parseInt(newTestPrerequisite) || 0,
-                difficulty: newTestDifficulty,
-                questionOrder: newTestQuestionOrder,
-                sections: newTestSections,
-                levelId: editingTestId ? tests.find(t=>t.id === editingTestId)?.levelId : null
+                questions: newTestQuestions
             };
-
-            // Save to Firestore
             await setDoc(getDocRef('tests', testObj.id), testObj);
-            resetCreateForm();
+            resetTestForm();
         };
 
-        const handleDeleteTest = async (id) => {
-            if (window.confirm("هل أنت متأكد من حذف هذا الاختبار نهائياً؟")) {
-                await deleteDoc(getDocRef('tests', id));
+        const deleteTest = async (id) => {
+            if(window.confirm("تأكيد الحذف؟")) await deleteDoc(getDocRef('tests', id));
+        };
+
+        // Admin: Users
+        const deleteUser = async (id) => {
+            if(window.confirm("حذف الطالب نهائياً؟")) await deleteDoc(getDocRef('users', id));
+        };
+        const resetAttempts = async (user) => {
+            if(window.confirm("هل تريد تصفير محاولات هذا الطالب؟ (سيتم استعادة الفرص لجميع الاختبارات)")) {
+                await setDoc(getDocRef('users', user.id), { ...user, attemptsLeft: {} });
             }
         };
 
-        const handleAddLevel = async () => {
-            if (!newLevelName.trim()) return;
-            const newLevel = { id: 'lvl_'+Date.now(), name: newLevelName, category: activeTestTab };
-            await setDoc(getDocRef('levels', newLevel.id), newLevel);
-            setNewLevelName('');
-        };
-
-        const handleDeleteUser = async (id) => {
-            if (window.confirm("حذف حساب الطالب وكل بياناته بشكل دائم؟")) {
-                await deleteDoc(getDocRef('users', id));
-            }
-        };
-
-        const handleAssignTestToLevel = async (testId, levelId) => {
-            const test = tests.find(t => t.id === testId);
-            if (test) {
-                await setDoc(getDocRef('tests', test.id), { ...test, levelId });
-            }
-        };
-
-        // --- Student Logic ---
-        const handleStartTest = (testId) => {
+        // Student: Exam Execution
+        const startExam = async (testId) => {
             const test = tests.find(t => t.id === testId);
             if (!test) return;
 
-            let testToRun = JSON.parse(JSON.stringify(test));
-            if (testToRun.questionOrder === 'random') {
-                testToRun.sections.forEach(s => s.questions.sort(() => Math.random() - 0.5));
+            try {
+                if (document.documentElement.requestFullscreen) {
+                    await document.documentElement.requestFullscreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    await document.documentElement.webkitRequestFullscreen();
+                }
+            } catch(e) {
+                alert("يجب السماح بوضع الشاشة الكاملة لبدء الاختبار لمنع الغش.");
+                return;
             }
+
+            // Shuffle Engine
+            let testToRun = JSON.parse(JSON.stringify(test));
+            testToRun.questions.sort(() => Math.random() - 0.5); // Shuffle Questions
+            testToRun.questions.forEach(q => q.options.sort(() => Math.random() - 0.5)); // Shuffle Options
 
             setSelectedTest(testToRun);
             setAnswers({});
             setQuizSubmitted(false);
+            setIsExamCancelled(false);
             setTimer(test.duration * 60);
             setCurrentPage('test');
             setCurrentQuestionIndex(0);
         };
 
-        const handleSubmitTest = async () => {
+        const handleSubmitTest = async (cancelled = false) => {
             if (quizSubmitted) return;
             setQuizSubmitted(true);
             
-            const qs = flattenQuestions(selectedTest.sections);
-            const score = qs.filter(q => answers[q.id] === q.correctAnswer).length;
-            const timeTaken = (selectedTest.duration * 60) - timer;
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(()=>{});
+            }
 
+            const qs = selectedTest.questions;
+            const score = cancelled ? 0 : qs.filter(q => answers[q.id] === q.correctAnswer).length;
+            
             const uIndex = users.findIndex(u => u.id === currentUser.id);
             if (uIndex > -1) {
                 const userToUpdate = {...users[uIndex]};
                 
+                // Track attempts
                 const left = userToUpdate.attemptsLeft[selectedTest.id] !== undefined ? userToUpdate.attemptsLeft[selectedTest.id] : selectedTest.maxAttempts;
-                userToUpdate.attemptsLeft[selectedTest.id] = left - 1;
+                userToUpdate.attemptsLeft[selectedTest.id] = Math.max(0, left - 1);
 
+                // Track Score
                 if (!userToUpdate.scores[selectedTest.id]) userToUpdate.scores[selectedTest.id] = [];
                 userToUpdate.scores[selectedTest.id].push({
-                    score, total: qs.length, date: new Date().toLocaleDateString('ar-SA'), timeTaken
+                    score, total: qs.length, date: new Date().toLocaleDateString('ar-SA'), cancelled
                 });
 
-                const incorrects = qs.filter(q => answers[q.id] !== q.correctAnswer);
-                const existingWrongIds = new Set((userToUpdate.incorrectQuestions || []).map(q=>q.id));
-                const newWrongs = incorrects.filter(q => !existingWrongIds.has(q.id));
-                userToUpdate.incorrectQuestions = [...(userToUpdate.incorrectQuestions || []), ...newWrongs];
+                // Track Weak Points (Incorrect Questions)
+                if (!cancelled) {
+                    const incorrects = qs.filter(q => answers[q.id] !== q.correctAnswer);
+                    const existingWrongIds = new Set((userToUpdate.incorrectQuestions || []).map(q=>q.id));
+                    const newWrongs = incorrects.filter(q => !existingWrongIds.has(q.id));
+                    userToUpdate.incorrectQuestions = [...(userToUpdate.incorrectQuestions || []), ...newWrongs];
+                }
 
-                // Sync with Firestore
                 await setDoc(getDocRef('users', userToUpdate.id), userToUpdate);
                 setCurrentUser(userToUpdate); 
             }
             setCurrentPage('results');
         };
 
-        // ==========================================
-        // UI Renderers
-        // ==========================================
-        
-        if (dbError) {
-            return (
-                <div className="min-h-screen flex flex-col items-center justify-center animated-gradient p-4 text-center">
-                    <div className="glass-panel p-8 rounded-3xl max-w-lg shadow-xl animate-fade-in-up">
-                        <div className="text-6xl mb-4">⚠️</div>
-                        <h2 className="text-2xl font-bold text-danger mb-4">خطأ في مصادقة Firebase</h2>
-                        <p className="text-lg font-medium opacity-80 leading-relaxed mb-6">{dbError}</p>
-                        <div className="text-sm bg-warning/10 text-warning p-4 rounded-xl border border-warning/20 text-right space-y-2">
-                            <p className="font-bold">لحل هذه المشكلة، يرجى اتباع الخطوات التالية في لوحة تحكم Firebase:</p>
-                            <ol className="list-decimal list-inside space-y-1">
-                                <li>اذهب إلى قسم <strong>Authentication</strong></li>
-                                <li>اختر تبويب <strong>Sign-in method</strong></li>
-                                <li>اضغط على <strong>Add new provider</strong></li>
-                                <li>اختر <strong>Anonymous</strong> وقم بتفعيلها وحفظها</li>
-                                <li>قم بتحديث هذه الصفحة</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
+        // --- Renderers ---
 
-        if (!dbReady) {
-            return (
-                <div className="min-h-screen flex flex-col items-center justify-center animated-gradient">
-                    <div className="w-16 h-16 border-4 border-white/30 border-t-primary rounded-full animate-spin shadow-lg mb-4"></div>
-                    <p className="text-primary font-bold text-lg drop-shadow-md">جاري الاتصال بقاعدة البيانات...</p>
-                </div>
-            );
-        }
+        if (!dbReady) return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        );
 
         const renderLogin = () => (
-            <div className="flex items-center justify-center min-h-screen px-4 py-12 relative overflow-hidden">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-success/30 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse" style={{animationDelay: '2s'}}></div>
-                
-                <div className="glass-panel p-10 rounded-[2rem] w-full max-w-md relative z-10 animate-fade-in-up">
-                    <div className="text-center mb-10">
-                        <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-primary to-blue-400 mx-auto mb-6 flex items-center justify-center shadow-lg shadow-primary/30 transform rotate-3 hover:rotate-6 transition-transform">
-                            <span className="text-5xl text-white block -rotate-3">🎓</span>
-                        </div>
-                        <h2 className="text-3xl font-extrabold tracking-tight mb-2">منصة التقييم</h2>
-                        <p className="text-sm opacity-80 font-medium">الرجاء تسجيل الدخول للمتابعة</p>
+            <div className="min-h-screen flex items-center justify-center p-4">
+                <div className="glass-panel p-8 md:p-12 rounded-[2rem] w-full max-w-md animate-fade-in text-center relative z-10">
+                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span className="text-4xl text-primary">🎓</span>
                     </div>
-                    {loginError && (
-                        <div className="bg-danger/10 border-l-4 border-danger text-danger px-4 py-3 rounded-lg mb-6 text-sm font-semibold flex items-center gap-2">
-                            <span>⚠️</span> {loginError}
-                        </div>
-                    )}
-                    <div className="space-y-5">
+                    <h2 className="text-3xl font-extrabold mb-2">{currentPage === 'register' ? 'إنشاء حساب جديد' : 'منصة الاختبارات'}</h2>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mb-8">{currentPage === 'register' ? 'قم بإدخال بياناتك للبدء' : 'سجل دخولك للمتابعة'}</p>
+                    
+                    {authError && <div className="bg-danger/10 text-danger p-3 rounded-xl mb-6 text-sm font-bold">{authError}</div>}
+                    
+                    <div className="space-y-4 text-right">
                         <div>
-                            <label className="block text-xs font-bold uppercase tracking-wider opacity-70 mb-2 pl-1">اسم المستخدم</label>
-                            <input type="text" value={loginUser} onChange={e=>setLoginUser(e.target.value)} className="glass-input w-full p-4 rounded-xl font-medium" placeholder="أدخل اسم المستخدم" />
+                            <label className="block text-xs font-bold mb-2 opacity-70">اسم المستخدم</label>
+                            <input type="text" value={authUsername} onChange={e=>setAuthUsername(e.target.value)} className="glass-input w-full p-4 rounded-xl font-medium text-left" dir="ltr" placeholder="Username" />
                         </div>
                         <div>
-                            <label className="block text-xs font-bold uppercase tracking-wider opacity-70 mb-2 pl-1">الرقم السري / الرمز</label>
-                            <input type="password" value={loginPass} onChange={e=>setLoginPass(e.target.value)} className="glass-input w-full p-4 rounded-xl font-medium" placeholder="أدخل كلمة المرور" />
+                            <label className="block text-xs font-bold mb-2 opacity-70">كلمة المرور</label>
+                            <input type="password" value={authPassword} onChange={e=>setAuthPassword(e.target.value)} className="glass-input w-full p-4 rounded-xl font-medium text-left" dir="ltr" placeholder="Password" />
                         </div>
-                        <button onClick={handleLogin} className="glass-btn-primary w-full py-4 rounded-xl text-lg font-bold tracking-wide mt-4">
-                            تسجيل الدخول
+                        <button onClick={() => handleAuth(currentPage === 'register')} className="glass-btn-primary w-full py-4 rounded-xl font-bold text-lg mt-2">
+                            {currentPage === 'register' ? 'تسجيل كطالب' : 'دخول'}
                         </button>
+                    </div>
+                    
+                    <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+                        {currentPage === 'login' ? (
+                            <button onClick={()=> {setCurrentPage('register'); setAuthError('');}} className="text-primary font-bold text-sm hover:underline">مستخدم جديد؟ إنشاء حساب</button>
+                        ) : (
+                            <button onClick={()=> {setCurrentPage('login'); setAuthError('');}} className="text-slate-500 font-bold text-sm hover:underline">لدي حساب بالفعل</button>
+                        )}
                     </div>
                 </div>
             </div>
         );
 
-        const renderTeacherDashboard = () => (
-            <div className="min-h-screen p-4 sm:p-8 animate-fade-in-up">
-                <div className="max-w-7xl mx-auto space-y-8">
-                    <div className="glass-panel px-8 py-5 rounded-3xl flex flex-col sm:flex-row justify-between items-center gap-4">
+        const renderProfileSetup = () => (
+            <div className="min-h-screen flex items-center justify-center p-4">
+                <div className="glass-panel p-8 rounded-[2rem] w-full max-w-md animate-fade-in text-center">
+                    <h2 className="text-2xl font-bold mb-6">إعداد الملف الشخصي</h2>
+                    <p className="text-sm opacity-70 mb-8">يرجى تحديد التصنيف والمستوى الدراسي لعرض الاختبارات المناسبة لك.</p>
+                    
+                    <div className="space-y-5 text-right mb-8">
+                        <div>
+                            <label className="block text-xs font-bold mb-2 opacity-70">الفرقة / التصنيف</label>
+                            <select value={setupCategory} onChange={e=>{setSetupCategory(e.target.value); setSetupLevel('');}} className="glass-input w-full p-3 rounded-xl font-medium">
+                                <option value="">-- اختر التصنيف --</option>
+                                {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="block text-xs font-bold mb-2 opacity-70">المستوى الدراسي</label>
+                            <select value={setupLevel} onChange={e=>setSetupLevel(e.target.value)} disabled={!setupCategory} className="glass-input w-full p-3 rounded-xl font-medium">
+                                <option value="">-- اختر المستوى --</option>
+                                {levels.filter(l=>l.categoryId === setupCategory).map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button onClick={handleProfileSetup} className="glass-btn-primary w-full py-4 rounded-xl font-bold">حفظ ومتابعة</button>
+                </div>
+            </div>
+        );
+
+        // --- Teacher Views ---
+        const renderTestBuilder = () => (
+            <div className="glass-panel p-6 md:p-8 rounded-[2rem] animate-fade-in">
+                <div className="flex justify-between items-center mb-8">
+                    <h2 className="text-2xl font-bold">{editingTestId ? 'تعديل الاختبار' : 'اختبار جديد'}</h2>
+                    <button onClick={resetTestForm} className="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg text-sm font-bold">إلغاء الرجوع</button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div>
+                        <label className="block text-xs font-bold mb-2 opacity-70">عنوان الاختبار</label>
+                        <input type="text" value={newTestTitle} onChange={e=>setNewTestTitle(e.target.value)} className="glass-input w-full p-3 rounded-xl" placeholder="مثال: اختبار الشهر الأول"/>
+                    </div>
+                    <div>
+                        <label className="block text-xs font-bold mb-2 opacity-70">المدة (دقائق)</label>
+                        <input type="number" value={newTestDuration} onChange={e=>setNewTestDuration(e.target.value)} className="glass-input w-full p-3 rounded-xl" placeholder="60"/>
+                    </div>
+                    <div>
+                        <label className="block text-xs font-bold mb-2 opacity-70">التصنيف</label>
+                        <select value={newTestCategory} onChange={e=>{setNewTestCategory(e.target.value); setNewTestLevel('');}} className="glass-input w-full p-3 rounded-xl">
+                            <option value="">-- اختر --</option>
+                            {categories.map(c=><option key={c.id} value={c.id}>{c.name}</option>)}
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-xs font-bold mb-2 opacity-70">المستوى</label>
+                        <select value={newTestLevel} onChange={e=>setNewTestLevel(e.target.value)} className="glass-input w-full p-3 rounded-xl">
+                            <option value="">-- اختر --</option>
+                            {levels.filter(l=>l.categoryId === newTestCategory).map(l=><option key={l.id} value={l.id}>{l.name}</option>)}
+                        </select>
+                    </div>
+                </div>
+
+                <div className="space-y-6">
+                    {newTestQuestions.map((q, qIndex) => (
+                        <div key={q.id} className="bg-white/50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 relative">
+                            <div className="flex justify-between items-center mb-4">
+                                <h4 className="font-bold text-primary">سؤال {qIndex + 1}</h4>
+                                <button onClick={() => setNewTestQuestions(newTestQuestions.filter((_,i)=>i!==qIndex))} className="text-danger bg-danger/10 px-3 py-1 rounded-lg text-sm font-bold">حذف السؤال</button>
+                            </div>
+                            
+                            <textarea value={q.text} onChange={e => { let qs=[...newTestQuestions]; qs[qIndex].text=e.target.value; setNewTestQuestions(qs); }} placeholder="نص السؤال (يدعم $ للرياضيات والعربية/الإنجليزية)" className="glass-input w-full p-4 rounded-xl mb-3 min-h-[100px] rtl:text-right ltr:text-left" dir="auto"></textarea>
+                            <input type="text" value={q.imageUrl} onChange={e => { let qs=[...newTestQuestions]; qs[qIndex].imageUrl=e.target.value; setNewTestQuestions(qs); }} placeholder="رابط صورة للسؤال (اختياري URL)" className="glass-input w-full p-3 rounded-xl mb-6 text-sm" dir="ltr" />
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {q.options.map((opt, oIndex) => (
+                                    <div key={opt.id} className={`p-3 rounded-xl border-2 flex flex-col gap-2 transition ${q.correctAnswer === opt.id ? 'border-success bg-success/5' : 'border-slate-200 dark:border-slate-700'}`}>
+                                        <div className="flex items-center gap-2">
+                                            <input type="radio" name={`correct-${q.id}`} checked={q.correctAnswer === opt.id} onChange={() => { let qs=[...newTestQuestions]; qs[qIndex].correctAnswer=opt.id; setNewTestQuestions(qs); }} className="w-5 h-5 accent-success"/>
+                                            <span className="font-bold text-sm opacity-70">خيار صحيح</span>
+                                        </div>
+                                        <input type="text" value={opt.text} onChange={e => { let qs=[...newTestQuestions]; qs[qIndex].options[oIndex].text=e.target.value; setNewTestQuestions(qs); }} placeholder="نص الإجابة" className="glass-input w-full p-2 rounded-lg text-sm" dir="auto" />
+                                        <input type="text" value={opt.imageUrl} onChange={e => { let qs=[...newTestQuestions]; qs[qIndex].options[oIndex].imageUrl=e.target.value; setNewTestQuestions(qs); }} placeholder="رابط صورة (اختياري)" className="glass-input w-full p-2 rounded-lg text-xs" dir="ltr" />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-6 flex flex-col sm:flex-row gap-4">
+                    <button onClick={() => setNewTestQuestions([...newTestQuestions, createNewQuestion()])} className="border-2 border-dashed border-primary text-primary font-bold py-4 rounded-xl w-full hover:bg-primary/5 transition">
+                        + إضافة سؤال
+                    </button>
+                    <button onClick={saveTest} className="glass-btn-primary py-4 px-8 rounded-xl font-bold w-full sm:w-auto whitespace-nowrap">
+                        حفظ الاختبار
+                    </button>
+                </div>
+            </div>
+        );
+
+        const renderAdminSettings = () => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
+                <div className="glass-panel p-6 rounded-[2rem]">
+                    <h3 className="text-xl font-bold mb-6 text-primary flex items-center gap-2"><span className="text-2xl">📂</span> إدارة التصنيفات</h3>
+                    <div className="flex gap-2 mb-6">
+                        <input type="text" value={newCategoryName} onChange={e=>setNewCategoryName(e.target.value)} placeholder="اسم التصنيف (مثال: الصف الأول)" className="glass-input flex-grow p-3 rounded-xl font-medium" />
+                        <button onClick={addCategory} className="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:opacity-90">إضافة</button>
+                    </div>
+                    <ul className="space-y-2">
+                        {categories.map(c => (
+                            <li key={c.id} className="flex justify-between items-center p-3 bg-white/40 dark:bg-slate-800/40 rounded-xl">
+                                <span className="font-bold">{c.name}</span>
+                                <button onClick={()=>deleteCategory(c.id)} className="text-danger text-sm font-bold bg-danger/10 px-3 py-1 rounded-lg">حذف</button>
+                            </li>
+                        ))}
+                        {categories.length===0 && <p className="text-sm opacity-50 text-center py-4">لا توجد تصنيفات</p>}
+                    </ul>
+                </div>
+
+                <div className="glass-panel p-6 rounded-[2rem]">
+                    <h3 className="text-xl font-bold mb-6 text-primary flex items-center gap-2"><span className="text-2xl">🏷️</span> إدارة المستويات</h3>
+                    <div className="space-y-3 mb-6">
+                        <select value={selectedCategoryForLevel} onChange={e=>setSelectedCategoryForLevel(e.target.value)} className="glass-input w-full p-3 rounded-xl">
+                            <option value="">-- اختر التصنيف أولاً --</option>
+                            {categories.map(c=><option key={c.id} value={c.id}>{c.name}</option>)}
+                        </select>
+                        <div className="flex gap-2">
+                            <input type="text" value={newLevelName} onChange={e=>setNewLevelName(e.target.value)} placeholder="المستوى (مثال: الوحدة الأولى)" className="glass-input flex-grow p-3 rounded-xl font-medium" />
+                            <button onClick={addLevel} className="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:opacity-90">إضافة</button>
+                        </div>
+                    </div>
+                    <ul className="space-y-2">
+                        {levels.map(l => (
+                            <li key={l.id} className="flex justify-between items-center p-3 bg-white/40 dark:bg-slate-800/40 rounded-xl">
+                                <div><span className="font-bold">{l.name}</span> <span className="text-xs opacity-50 ml-2">({categories.find(c=>c.id===l.categoryId)?.name})</span></div>
+                                <button onClick={()=>deleteLevel(l.id)} className="text-danger text-sm font-bold bg-danger/10 px-3 py-1 rounded-lg">حذف</button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="glass-panel p-6 rounded-[2rem] md:col-span-2">
+                    <h3 className="text-xl font-bold mb-6 text-primary flex items-center gap-2"><span className="text-2xl">💾</span> النسخ الاحتياطي (JSON)</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="p-5 border border-dashed border-primary/40 rounded-2xl bg-primary/5">
+                            <h4 className="font-bold mb-4">بيانات الاختبارات والأسئلة</h4>
+                            <div className="flex flex-wrap gap-2">
+                                <button onClick={()=>exportJSON(tests, 'exams_backup.json')} className="bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-bold flex-1">تصدير (تحميل)</button>
+                                <label className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold cursor-pointer flex-1 text-center">
+                                    استيراد (رفع)
+                                    <input type="file" accept=".json" onChange={(e)=>importJSON(e, 'tests')} className="hidden" />
+                                </label>
+                            </div>
+                        </div>
+                        <div className="p-5 border border-dashed border-success/40 rounded-2xl bg-success/5">
+                            <h4 className="font-bold mb-4">بيانات الطلاب</h4>
+                            <div className="flex flex-wrap gap-2">
+                                <button onClick={()=>exportJSON(users, 'users_backup.json')} className="bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-bold flex-1">تصدير (تحميل)</button>
+                                <label className="bg-success text-white px-4 py-2 rounded-lg text-sm font-bold cursor-pointer flex-1 text-center">
+                                    استيراد (رفع)
+                                    <input type="file" accept=".json" onChange={(e)=>importJSON(e, 'users')} className="hidden" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const renderAdminDashboard = () => (
+            <div className="min-h-screen p-4 md:p-8">
+                <div className="max-w-7xl mx-auto space-y-6">
+                    {/* Header */}
+                    <div className="glass-panel p-5 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-4 relative z-50">
                         <div className="flex items-center gap-4">
-                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-secondary to-primary flex items-center justify-center shadow-lg overflow-hidden border border-white/30 dark:border-slate-600/50 p-0.5">
+                            <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg overflow-hidden border border-white/30 dark:border-slate-600/50 p-0.5 bg-gradient-to-br from-secondary to-primary">
     <img 
         src="https://fv5-3.files.fm/thumb_show.php?i=acw4dnb8bh&view&v=1&PHPSESSID=560b994da82cde537ba52e6fb9207f9946cb4ec2" 
         alt="أيقونة المطور" 
-        className="w-full h-full object-cover rounded-[0.85rem]" 
+        className="w-full h-full object-cover rounded-[0.6rem]" 
     />
 </div>
                             <div>
-                                <h1 className="text-2xl font-bold">Mr.Ahmed Anees</h1>
-                                <p className="text-sm opacity-70 font-medium">{currentUser.username}</p>
+                                <h1 className="text-xl font-bold">Mr.Ahmed Anees</h1>
+                                <p className="text-sm opacity-70">أهلاً بك، {currentUser.username}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
-                            <div className="glass-panel px-2 p-1 rounded-xl flex gap-1">
-                                <button onClick={()=>setDevPage('dashboard')} className={`px-5 py-2 rounded-lg font-bold text-sm transition-all ${devPage==='dashboard'?'bg-primary text-white shadow-md':'hover:bg-white/30 dark:hover:bg-slate-800/30 opacity-70'}`}>الاختبارات</button>
-                                <button onClick={()=>setDevPage('users')} className={`px-5 py-2 rounded-lg font-bold text-sm transition-all ${devPage==='users'?'bg-primary text-white shadow-md':'hover:bg-white/30 dark:hover:bg-slate-800/30 opacity-70'}`}>الطلاب</button>
+                            <div className="bg-black/5 dark:bg-white/5 p-1 rounded-xl flex">
+                                <button onClick={()=>setDevPage('dashboard')} className={`px-4 py-2 rounded-lg text-sm font-bold transition ${devPage==='dashboard'?'bg-white dark:bg-slate-800 shadow':''}`}>الاختبارات</button>
+                                <button onClick={()=>setDevPage('users')} className={`px-4 py-2 rounded-lg text-sm font-bold transition ${devPage==='users'?'bg-white dark:bg-slate-800 shadow':''}`}>الطلاب</button>
+                                <button onClick={()=>setDevPage('settings')} className={`px-4 py-2 rounded-lg text-sm font-bold transition ${devPage==='settings'?'bg-white dark:bg-slate-800 shadow':''}`}>الإعدادات</button>
                             </div>
                             <SettingsDropdown darkMode={darkMode} setDarkMode={setDarkMode} handleLogout={handleLogout} />
                         </div>
                     </div>
 
-                    {devPage === 'dashboard' && (
-                        <div className="glass-panel p-8 rounded-[2.5rem]">
-                            {!showCreateTestForm ? (
-                                <div className="space-y-8 animate-fade-in-up">
-                                    <div className="flex flex-wrap gap-4">
-                                        <button onClick={() => {setShowCreateTestForm(true); setNewTestCategory('جبر'); resetCreateForm();}} className="glass-btn-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
-                                            اختبار جبر جديد
-                                        </button>
-                                        <button onClick={() => {setShowCreateTestForm(true); setNewTestCategory('هندسة'); resetCreateForm();}} className="bg-success text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:shadow-success/40 hover:-translate-y-0.5 transition-all">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
-                                            اختبار هندسة جديد
-                                        </button>
-                                    </div>
-                                    
-                                    <div className="flex border-b border-white/20 dark:border-slate-700/50">
-                                        <button onClick={()=>setActiveTestTab('جبر')} className={`px-8 py-4 font-bold text-lg transition-all border-b-2 ${activeTestTab==='جبر'?'border-primary text-primary':'border-transparent opacity-50 hover:opacity-100'}`}>قسم الجبر</button>
-                                        <button onClick={()=>setActiveTestTab('هندسة')} className={`px-8 py-4 font-bold text-lg transition-all border-b-2 ${activeTestTab==='هندسة'?'border-primary text-primary':'border-transparent opacity-50 hover:opacity-100'}`}>قسم الهندسة</button>
-                                    </div>
-
-                                    <div className="flex flex-col sm:flex-row gap-3">
-                                        <input type="text" placeholder="اسم المستوى الجديد (مثال: الأسبوع الأول)" value={newLevelName} onChange={e=>setNewLevelName(e.target.value)} className="glass-input p-3 rounded-xl flex-grow font-medium" />
-                                        <button onClick={handleAddLevel} className="bg-secondary text-white px-6 py-3 rounded-xl font-bold shadow-md hover:bg-opacity-90 transition-all">إضافة مستوى</button>
-                                    </div>
-
-                                    <div className="space-y-8">
-                                        {levels.filter(l=>l.category === activeTestTab).map(level => (
-                                            <div key={level.id} className="bg-white/30 dark:bg-slate-800/30 backdrop-blur-md p-6 rounded-3xl border border-white/40 dark:border-slate-700/50" onDragOver={e=>e.preventDefault()} onDrop={(e)=> { const id = e.dataTransfer.getData('tid'); handleAssignTestToLevel(id, level.id); }}>
-                                                <h3 className="font-extrabold text-xl mb-6 flex items-center gap-2">
-                                                    <span className="w-2 h-6 bg-primary rounded-full block"></span>
-                                                    {level.name}
-                                                </h3>
-                                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                                                    {testsByCategory[activeTestTab].filter(t=>t.levelId === level.id).map(test => (
-                                                        <div key={test.id} draggable onDragStart={(e)=>e.dataTransfer.setData('tid', test.id)} className="glass-panel p-5 rounded-2xl glass-card-hover cursor-grab active:cursor-grabbing border-l-4 border-l-primary flex flex-col">
-                                                            <h4 className="font-bold text-lg mb-1 truncate flex-grow">{test.title}</h4>
-                                                            <div className="flex justify-between text-xs font-semibold opacity-70 mb-4 mt-2">
-                                                                <span>{flattenQuestions(test.sections).length} أسئلة</span>
-                                                                <span>{test.duration} دقيقة</span>
-                                                            </div>
-                                                            <div className="flex gap-2">
-                                                                <button onClick={()=>{setEditingTestId(test.id); setShowCreateTestForm(true); setNewTestTitle(test.title); setNewTestCategory(test.category); setNewTestSections(test.sections); setNewTestDuration(test.duration); setNewTestMaxAttempts(test.maxAttempts); setNewTestDifficulty(test.difficulty); setNewTestQuestionOrder(test.questionOrder);}} className="flex-1 bg-warning/20 hover:bg-warning/30 text-warning py-2 rounded-lg text-sm font-bold transition">تعديل</button>
-                                                                <button onClick={()=>handleDeleteTest(test.id)} className="flex-1 bg-danger/10 hover:bg-danger hover:text-white text-danger py-2 rounded-lg text-sm font-bold transition">حذف</button>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                    {testsByCategory[activeTestTab].filter(t=>t.levelId === level.id).length === 0 && (
-                                                        <div className="col-span-full py-8 text-center opacity-50 font-medium border-2 border-dashed border-current rounded-2xl">
-                                                            اسحب الاختبارات وأفلتها هنا
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ))}
-
-                                        <div className="p-6 rounded-3xl border-2 border-dashed border-primary/30 bg-primary/5" onDragOver={e=>e.preventDefault()} onDrop={(e)=> { const id = e.dataTransfer.getData('tid'); handleAssignTestToLevel(id, null); }}>
-                                            <h3 className="font-bold text-lg mb-6 opacity-60 flex items-center gap-2"><svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg> اختبارات غير مصنفة</h3>
-                                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                                                {testsByCategory[activeTestTab].filter(t=>!t.levelId).map(test => (
-                                                     <div key={test.id} draggable onDragStart={(e)=>e.dataTransfer.setData('tid', test.id)} className="glass-panel p-5 rounded-2xl glass-card-hover cursor-grab border-l-4 border-l-slate-400 flex flex-col">
-                                                        <h4 className="font-bold text-lg mb-1 truncate flex-grow">{test.title}</h4>
-                                                        <div className="flex justify-between text-xs font-semibold opacity-70 mb-4 mt-2">
-                                                            <span>{flattenQuestions(test.sections).length} أسئلة</span>
-                                                        </div>
-                                                        <div className="flex gap-2">
-                                                              <button onClick={()=>{setEditingTestId(test.id); setShowCreateTestForm(true); setNewTestTitle(test.title); setNewTestCategory(test.category); setNewTestSections(test.sections); setNewTestDuration(test.duration); setNewTestMaxAttempts(test.maxAttempts); setNewTestDifficulty(test.difficulty); setNewTestQuestionOrder(test.questionOrder);}} className="flex-1 bg-warning/20 hover:bg-warning text-warning hover:text-white py-2 rounded-lg text-sm font-bold transition">تعديل</button>
-                                                              <button onClick={()=>handleDeleteTest(test.id)} className="flex-1 bg-danger/10 hover:bg-danger text-danger hover:text-white py-2 rounded-lg text-sm font-bold transition">حذف</button>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="animate-fade-in-up">
-                                    <div className="flex items-center gap-3 mb-8">
-                                        <button onClick={resetCreateForm} className="p-2 rounded-full glass-panel hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition">&rarr;</button>
-                                        <h2 className="text-3xl font-extrabold">{editingTestId ? 'تعديل الاختبار' : 'إعداد اختبار جديد'} <span className="text-primary text-xl px-3 py-1 bg-primary/10 rounded-lg ml-2">{newTestCategory}</span></h2>
-                                    </div>
-                                    
-                                    <div className="glass-panel p-6 rounded-2xl mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                                        <div>
-                                            <label className="block text-xs font-bold uppercase opacity-70 mb-2 pl-1">عنوان الاختبار</label>
-                                            <input type="text" placeholder="أدخل العنوان" value={newTestTitle} onChange={e=>setNewTestTitle(e.target.value)} className="glass-input p-3 rounded-xl w-full font-bold" />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-bold uppercase opacity-70 mb-2 pl-1">المدة (بالدقائق)</label>
-                                            <input type="number" placeholder="مثال: 60" value={newTestDuration} onChange={e=>setNewTestDuration(e.target.value)} className="glass-input p-3 rounded-xl w-full font-bold" />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-bold uppercase opacity-70 mb-2 pl-1">عدد المحاولات</label>
-                                            <input type="number" placeholder="مثال: 3" value={newTestMaxAttempts} onChange={e=>setNewTestMaxAttempts(e.target.value)} className="glass-input p-3 rounded-xl w-full font-bold" />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-bold uppercase opacity-70 mb-2 pl-1">ترتيب الأسئلة</label>
-                                            <select value={newTestQuestionOrder} onChange={e=>setNewTestQuestionOrder(e.target.value)} className="glass-input p-3 rounded-xl w-full font-bold">
-                                                <option value="ordered">ثابت (كما أدخلت)</option>
-                                                <option value="random">عشوائي لكل محاولة</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-6">
-                                        {newTestSections.map((sec, sIdx) => (
-                                            <SectionBuilder key={sec.id} section={sec} sectionIndex={sIdx} 
-                                                onUpdateSection={(idx, f, v) => {let s=[...newTestSections]; s[idx][f]=v; setNewTestSections(s);}}
-                                                onDeleteSection={(idx) => { if(newTestSections.length>1) setNewTestSections(newTestSections.filter((_,i)=>i!==idx)); }}
-                                                onAddQuestion={(idx) => {let s=[...newTestSections]; s[idx].questions.push(createNewQuestion()); setNewTestSections(s);}}
-                                                onUpdateQuestion={(sIdx, qIdx, f, v) => {let s=[...newTestSections]; s[sIdx].questions[qIdx][f]=v; setNewTestSections(s);}}
-                                                onUpdateOption={(sIdx, qIdx, oIdx, f, v) => {let s=[...newTestSections]; s[sIdx].questions[qIdx].options[oIdx][f]=v; setNewTestSections(s);}}
-                                                onUpdateCorrectAnswer={(sIdx, qIdx, v) => {let s=[...newTestSections]; s[sIdx].questions[qIdx].correctAnswer=v; setNewTestSections(s);}}
-                                                onDeleteQuestion={(sIdx, qIdx) => {let s=[...newTestSections]; s[sIdx].questions.splice(qIdx,1); setNewTestSections(s);}}
-                                            />
-                                        ))}
-                                    </div>
-                                    
-                                    <button onClick={() => setNewTestSections([...newTestSections, addDefaultSection()])} className="mt-4 bg-transparent border-2 border-dashed border-primary text-primary hover:bg-primary/5 font-bold py-4 rounded-2xl w-full mb-10 transition">
-                                        + قسم جديد
-                                    </button>
-
-                                    <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/20 dark:border-slate-700/50">
-                                        <button onClick={handleSaveTest} className="glass-btn-primary px-10 py-4 rounded-xl font-bold text-lg flex-1">حفظ الاختبار واعتماده</button>
-                                        <button onClick={resetCreateForm} className="glass-panel px-10 py-4 rounded-xl font-bold text-lg opacity-80 hover:opacity-100 transition sm:w-auto w-full">إلغاء التعديلات</button>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {devPage === 'users' && (
-                        <div className="glass-panel p-8 rounded-[2.5rem] animate-fade-in-up">
-                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-                                <div>
-                                    <h2 className="text-3xl font-extrabold mb-1">إدارة الطلاب</h2>
-                                    <p className="opacity-70 font-medium">التحكم في الحسابات وصلاحيات الدخول</p>
-                                </div>
-                                <button onClick={handleGenerateStudent} className="glass-btn-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg">
-                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
-                                    تسجيل طالب جديد
-                                </button>
-                            </div>
-                            <div className="overflow-x-auto rounded-2xl border border-white/20 dark:border-slate-700/50 shadow-inner bg-white/10 dark:bg-slate-900/10">
-                                <table className="w-full text-right text-sm">
-                                    <thead className="bg-white/40 dark:bg-slate-800/60 backdrop-blur-md border-b border-white/30 dark:border-slate-700/50">
+                    {/* Main Content */}
+                    <div className="relative z-10">
+                        {devPage === 'settings' && renderAdminSettings()}
+                        
+                        {devPage === 'users' && (
+                            <div className="glass-panel p-6 rounded-[2rem] overflow-x-auto animate-fade-in">
+                                <h2 className="text-2xl font-bold mb-6">إدارة الطلاب</h2>
+                                <table className="w-full text-right text-sm whitespace-nowrap">
+                                    <thead className="border-b border-slate-200 dark:border-slate-700 opacity-70">
                                         <tr>
-                                            <th className="p-5 font-bold uppercase tracking-wider opacity-70">اسم الطالب</th>
-                                            <th className="p-5 font-bold uppercase tracking-wider opacity-70">رمز الدخول</th>
-                                            <th className="p-5 font-bold uppercase tracking-wider opacity-70">الأقسام المتاحة</th>
-                                            <th className="p-5 font-bold uppercase tracking-wider opacity-70 text-center">إجراءات</th>
+                                            <th className="p-4 font-bold">اسم الطالب</th>
+                                            <th className="p-4 font-bold">التصنيف</th>
+                                            <th className="p-4 font-bold">المستوى</th>
+                                            <th className="p-4 font-bold text-center">الإجراءات</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-white/10 dark:divide-slate-700/30">
-                                        {users.filter(u=>u.role==='student').map((user, idx) => (
-                                            <tr key={user.id} className="hover:bg-white/20 dark:hover:bg-slate-800/30 transition">
-                                                <td className="p-5 font-bold text-base flex items-center gap-3">
-                                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-primary flex items-center justify-center text-white text-xs font-black shadow-sm">{idx+1}</div>
-                                                    {user.username}
-                                                </td>
-                                                <td className="p-5 text-primary dark:text-blue-400 font-mono text-lg font-bold tracking-widest">{user.accessCode}</td>
-                                                <td className="p-5 font-medium opacity-80">
-                                                    <span className="bg-slate-200/50 dark:bg-slate-700/50 px-3 py-1 rounded-full text-xs">{user.allowedSections?.join(' + ') || 'الكل'}</span>
-                                                </td>
-                                                <td className="p-5 text-center">
-                                                    <button onClick={()=>handleDeleteUser(user.id)} className="bg-danger/10 hover:bg-danger text-danger hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition shadow-sm">إلغاء الحساب</button>
+                                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                                        {users.filter(u=>u.role==='student').map(u => (
+                                            <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
+                                                <td className="p-4 font-bold">{u.username}</td>
+                                                <td className="p-4">{categories.find(c=>c.id===u.category)?.name || '-'}</td>
+                                                <td className="p-4">{levels.find(l=>l.id===u.level)?.name || '-'}</td>
+                                                <td className="p-4 text-center space-x-2 space-x-reverse flex justify-center">
+                                                    <button onClick={()=>resetAttempts(u)} className="bg-warning/10 text-warning px-3 py-1.5 rounded-lg font-bold text-xs hover:bg-warning hover:text-white transition">تجديد المحاولات</button>
+                                                    <button onClick={()=>deleteUser(u.id)} className="bg-danger/10 text-danger px-3 py-1.5 rounded-lg font-bold text-xs hover:bg-danger hover:text-white transition">حذف</button>
                                                 </td>
                                             </tr>
                                         ))}
-                                        {users.filter(u=>u.role==='student').length === 0 && (
-                                            <tr><td colSpan="4" className="p-10 text-center opacity-50 font-medium">لا يوجد طلاب مسجلين حالياً.</td></tr>
-                                        )}
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-                    )}
+                        )}
+
+                        {devPage === 'dashboard' && (
+                            showCreateTestForm ? renderTestBuilder() : (
+                                <div className="space-y-6 animate-fade-in">
+                                    <div className="flex justify-between items-center">
+                                        <h2 className="text-2xl font-bold">بنك الاختبارات</h2>
+                                        <button onClick={()=>{resetTestForm(); setShowCreateTestForm(true);}} className="glass-btn-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg">
+                                            <span>+</span> إنشاء اختبار جديد
+                                        </button>
+                                    </div>
+
+                                    {/* Tabs */}
+                                    <div className="flex overflow-x-auto gap-2 pb-2">
+                                        {categories.map(c => (
+                                            <button key={c.id} onClick={()=>setActiveCategoryTab(c.id)} className={`px-6 py-3 rounded-xl font-bold whitespace-nowrap transition ${activeCategoryTab === c.id ? 'bg-primary text-white shadow-md' : 'glass-panel hover:bg-white dark:hover:bg-slate-800 opacity-70'}`}>
+                                                {c.name}
+                                            </button>
+                                        ))}
+                                    </div>
+
+                                    {/* Tests Grid */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                                        {tests.filter(t=>t.categoryId === activeCategoryTab).map(t => (
+                                            <div key={t.id} className="glass-panel p-6 rounded-3xl glass-card-hover flex flex-col">
+                                                <div className="flex justify-between items-start mb-4">
+                                                    <h3 className="font-bold text-lg leading-tight">{t.title}</h3>
+                                                    <span className="bg-slate-100 dark:bg-slate-800 text-xs px-2 py-1 rounded font-bold">{levels.find(l=>l.id===t.levelId)?.name}</span>
+                                                </div>
+                                                <div className="space-y-2 mb-6 text-sm opacity-80 font-medium">
+                                                    <p>الأسئلة: {t.questions?.length}</p>
+                                                    <p>المدة: {t.duration} دقيقة</p>
+                                                    <p>المحاولات المسموحة: {t.maxAttempts}</p>
+                                                </div>
+                                                <div className="mt-auto flex gap-2">
+                                                    <button onClick={()=>{
+                                                        setEditingTestId(t.id); setNewTestTitle(t.title); setNewTestCategory(t.categoryId); 
+                                                        setNewTestLevel(t.levelId); setNewTestDuration(t.duration); setNewTestMaxAttempts(t.maxAttempts); 
+                                                        setNewTestQuestions(t.questions); setShowCreateTestForm(true);
+                                                    }} className="flex-1 bg-warning/20 text-warning py-2.5 rounded-xl font-bold text-sm hover:bg-warning hover:text-white transition">تعديل</button>
+                                                    <button onClick={()=>deleteTest(t.id)} className="flex-1 bg-danger/10 text-danger py-2.5 rounded-xl font-bold text-sm hover:bg-danger hover:text-white transition">حذف</button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {tests.filter(t=>t.categoryId === activeCategoryTab).length === 0 && (
+                                            <div className="col-span-full py-12 text-center opacity-50 border-2 border-dashed rounded-3xl">لا توجد اختبارات في هذا التصنيف</div>
+                                        )}
+                                    </div>
+                                </div>
+                            )
+                        )}
+                    </div>
                 </div>
             </div>
         );
 
+        // --- Student Views ---
         const renderStudentDashboard = () => {
-            const myScores = Object.values(currentUser.scores || {}).flat();
-            const totalTestsTaken = Object.keys(currentUser.scores || {}).length;
-            const overallScore = myScores.reduce((acc, s) => acc + s.score, 0);
-            const overallTotal = myScores.reduce((acc, s) => acc + s.total, 0);
-            const percentage = overallTotal > 0 ? ((overallScore / overallTotal) * 100).toFixed(1) : 0;
-            const allowed = currentUser.allowedSections || ['جبر', 'هندسة'];
-            const myTests = tests.filter(t => allowed.includes(t.category));
-
+            const myTests = tests.filter(t => t.categoryId === currentUser.category && t.levelId === currentUser.level);
+            
             return (
-                <div className="min-h-screen p-4 sm:p-8 animate-fade-in-up">
-                    <div className="max-w-7xl mx-auto space-y-8">
-                         <div className="glass-panel px-8 py-6 rounded-[2rem] flex flex-col sm:flex-row justify-between items-center gap-6 relative">
-    {/* تم فصل الخلفية الدائرية في حاوية خاصة تحتوي على overflow-hidden حتى لا تقص القائمة المنسدلة */}
-    <div className="absolute inset-0 overflow-hidden rounded-[2rem] pointer-events-none z-0">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full filter blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-    </div>
-    
-    <div className="flex items-center gap-5 relative z-10">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-blue-400 p-1 shadow-xl">
-            <div className="w-full h-full bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-3xl">👋</div>
-        </div>
-        <div>
-            <h1 className="text-3xl font-extrabold mb-1">أهلاً بك، {currentUser.username}</h1>
-            <p className="opacity-70 font-semibold tracking-wide">طريقك للتميز يبدأ من هنا</p>
-        </div>
-    </div>
-    <div className="relative z-20">
-        <SettingsDropdown darkMode={darkMode} setDarkMode={setDarkMode} handleLogout={handleLogout} />
-    </div>
-</div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div className="glass-panel p-6 rounded-3xl relative overflow-hidden group border-b-4 border-b-primary">
-                                <h3 className="text-sm font-bold uppercase opacity-70 mb-2">نسبة الإنجاز والدقة</h3>
-                                <div className="flex items-end gap-2">
-                                    <p className="text-5xl font-black text-primary">{percentage}</p><span className="text-xl font-bold text-primary mb-1">%</span>
+                <div className="min-h-screen p-4 md:p-8 animate-fade-in relative">
+                    <div className="max-w-7xl mx-auto space-y-6">
+                        {/* Header */}
+                        <div className="glass-panel p-6 rounded-[2rem] flex justify-between items-center relative z-50">
+                            <div className="flex items-center gap-4">
+                                <div className="w-14 h-14 bg-gradient-to-br from-primary to-blue-300 rounded-2xl flex items-center justify-center text-2xl shadow-lg">👋</div>
+                                <div>
+                                    <h1 className="text-2xl font-extrabold">{currentUser.username}</h1>
+                                    <p className="text-sm font-semibold text-primary">{categories.find(c=>c.id===currentUser.category)?.name} - {levels.find(l=>l.id===currentUser.level)?.name}</p>
                                 </div>
                             </div>
-                            <div className="glass-panel p-6 rounded-3xl relative overflow-hidden group border-b-4 border-b-success">
-                                <h3 className="text-sm font-bold uppercase opacity-70 mb-2">الاختبارات المنجزة</h3>
-                                <p className="text-5xl font-black text-success">{totalTestsTaken}</p>
-                            </div>
-                            <div className="glass-panel p-6 rounded-3xl relative overflow-hidden group border-b-4 border-b-warning">
-                                <h3 className="text-sm font-bold uppercase opacity-70 mb-2">بنك الأسئلة الصعبة</h3>
-                                <div className="flex items-center justify-between">
-                                    <p className="text-5xl font-black text-warning">{currentUser.incorrectQuestions?.length || 0}</p>
-                                    <div className="w-10 h-10 rounded-full bg-warning/20 flex items-center justify-center text-warning">🎯</div>
-                                </div>
-                            </div>
+                            <SettingsDropdown darkMode={darkMode} setDarkMode={setDarkMode} handleLogout={handleLogout} />
                         </div>
 
-                        <div className="glass-panel p-8 rounded-[2.5rem]">
-                            <h2 className="text-2xl font-extrabold mb-8 flex items-center gap-3">
-                                <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                                الاختبارات المتاحة لك
-                            </h2>
-                            <div className="space-y-12">
-                                {allowed.map(cat => {
-                                    const catTests = myTests.filter(t=>t.category === cat);
-                                    if(catTests.length === 0) return null;
-                                    return (
-                                        <div key={cat}>
-                                            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                                                <span className="w-3 h-8 bg-gradient-to-b from-primary to-blue-300 rounded-full block shadow-md shadow-primary/40"></span>
-                                                قسم التدريب {cat}
-                                            </h3>
-                                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                                                {catTests.map(test => {
-                                                    const attempts = currentUser.attemptsLeft[test.id] !== undefined ? currentUser.attemptsLeft[test.id] : test.maxAttempts;
-                                                    const isLocked = percentage < (test.prerequisitePercentage || 0);
-                                                    return (
-                                                        <div key={test.id} className="bg-white/40 dark:bg-slate-800/40 backdrop-blur-md p-6 rounded-3xl border border-white/50 dark:border-slate-700/50 shadow-sm glass-card-hover flex flex-col h-full relative overflow-hidden">
-                                                            {isLocked && <div className="absolute top-0 right-0 bg-warning text-white text-xs font-bold px-3 py-1 rounded-bl-xl shadow-sm z-10">مغلق 🔒</div>}
-                                                            
-                                                            <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-xl mb-4">📝</div>
-                                                            <h4 className="font-extrabold text-lg mb-2 leading-tight flex-grow">{test.title}</h4>
-                                                            
-                                                            <div className="bg-black/5 dark:bg-white/5 rounded-xl p-3 space-y-2 mb-5">
-                                                                <div className="flex justify-between text-sm font-semibold opacity-80">
-                                                                    <span>المدة:</span><span>{test.duration} دقيقة</span>
-                                                                </div>
-                                                                <div className="flex justify-between text-sm font-semibold opacity-80">
-                                                                    <span>المحاولات:</span><span>{attempts} / {test.maxAttempts}</span>
-                                                                </div>
-                                                                {test.prerequisitePercentage > 0 && (
-                                                                    <div className="flex justify-between text-sm font-semibold text-warning border-t border-warning/20 pt-2 mt-2">
-                                                                        <span>الشرط:</span><span>{test.prerequisitePercentage}%</span>
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                            
-                                                            <button 
-                                                                onClick={()=>handleStartTest(test.id)} 
-                                                                disabled={attempts <= 0 || isLocked}
-                                                                className={`w-full py-3 rounded-xl font-bold transition-all shadow-md mt-auto ${attempts<=0||isLocked ? 'bg-slate-300 dark:bg-slate-700 text-slate-500 cursor-not-allowed shadow-none' : 'glass-btn-primary'}`}>
-                                                                {isLocked ? 'اختبار مغلق' : attempts > 0 ? 'ابدأ الآن' : 'استنفدت المحاولات'}
-                                                            </button>
-                                                        </div>
-                                                    );
-                                                })}
+                        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 relative z-10">
+                            {/* Main Content: Tests */}
+                            <div className="lg:col-span-3 space-y-6">
+                                <h2 className="text-xl font-bold flex items-center gap-2 px-2"><span className="text-primary">📝</span> الاختبارات المقررة عليك</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {myTests.map(test => {
+                                        const attemptsLeft = currentUser.attemptsLeft[test.id] !== undefined ? currentUser.attemptsLeft[test.id] : test.maxAttempts;
+                                        const isLocked = attemptsLeft <= 0;
+                                        
+                                        return (
+                                            <div key={test.id} className="glass-panel p-6 rounded-3xl relative overflow-hidden glass-card-hover flex flex-col">
+                                                {isLocked && <div className="absolute top-4 left-4 bg-danger text-white text-xs font-bold px-3 py-1 rounded-lg z-10 shadow">مغلق</div>}
+                                                <h3 className="font-extrabold text-xl mb-3 pr-2 border-r-4 border-primary">{test.title}</h3>
+                                                <div className="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-2xl space-y-2 mb-6">
+                                                    <div className="flex justify-between text-sm font-semibold opacity-80"><span>عدد الأسئلة:</span><span>{test.questions.length}</span></div>
+                                                    <div className="flex justify-between text-sm font-semibold opacity-80"><span>زمن الاختبار:</span><span>{test.duration} دقيقة</span></div>
+                                                    <div className="flex justify-between text-sm font-semibold opacity-80"><span>المحاولات المتبقية:</span><span className={attemptsLeft===0?'text-danger':''}>{attemptsLeft} من {test.maxAttempts}</span></div>
+                                                </div>
+                                                <button onClick={()=>startExam(test.id)} disabled={isLocked} className={`w-full py-4 rounded-xl font-bold mt-auto ${isLocked ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 cursor-not-allowed' : 'glass-btn-primary shadow-lg'}`}>
+                                                    {isLocked ? 'استنفدت المحاولات' : 'بدء الاختبار الآن'}
+                                                </button>
                                             </div>
-                                        </div>
-                                    )
-                                })}
+                                        )
+                                    })}
+                                    {myTests.length === 0 && (
+                                        <div className="col-span-full glass-panel p-10 rounded-3xl text-center opacity-60 font-bold text-lg">لا توجد اختبارات متاحة لك حالياً في هذا المستوى.</div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Sidebar: Weak Points */}
+                            <div className="lg:col-span-1">
+                                <div className="glass-panel p-6 rounded-3xl h-full flex flex-col">
+                                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-warning"><span className="text-2xl">🎯</span> نقاط الضعف</h3>
+                                    <p className="text-xs opacity-70 mb-4 font-semibold">أسئلة أخطأت بها سابقاً للمراجعة</p>
+                                    <div className="space-y-4 overflow-y-auto flex-grow max-h-[500px] pr-2 custom-scrollbar">
+                                        {currentUser.incorrectQuestions && currentUser.incorrectQuestions.length > 0 ? (
+                                            currentUser.incorrectQuestions.map((q, idx) => (
+                                                <div key={idx} className="bg-danger/5 border border-danger/20 p-4 rounded-2xl">
+                                                    <p className="text-sm font-bold mb-3"><MathComponent text={q.text} /></p>
+                                                    <div className="bg-success/10 text-success text-xs p-2 rounded-lg font-bold">
+                                                        الإجابة الصحيحة: <MathComponent text={q.options.find(o=>o.id===q.correctAnswer)?.text || 'صورة'} />
+                                                    </div>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="text-center opacity-50 py-10 font-bold text-sm">ممتاز! لا توجد نقاط ضعف مسجلة حتى الآن.</div>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -966,115 +949,106 @@
             );
         };
 
-        const renderTestPage = () => {
+        const renderTestRunner = () => {
             if (!selectedTest) return null;
-            const qs = flattenQuestions(selectedTest.sections);
+            const qs = selectedTest.questions;
             const q = qs[currentQuestionIndex];
             const progress = ((currentQuestionIndex + 1) / qs.length) * 100;
-            
+
             return (
-                <div className="min-h-screen p-4 flex flex-col items-center justify-center relative overflow-hidden">
-                    <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-primary/20 rounded-full mix-blend-overlay filter blur-[100px] animate-pulse"></div>
-                    
-                    <div className="glass-panel w-full max-w-4xl rounded-[2.5rem] flex flex-col relative z-10 animate-fade-in-up">
-                        <div className="p-6 border-b border-white/20 dark:border-slate-700/50 flex flex-col sm:flex-row justify-between items-center gap-4">
-                            <div>
-                                <h2 className="text-2xl font-extrabold">{selectedTest.title}</h2>
-                                <p className="opacity-70 text-sm font-semibold">الرجاء التركيز والإجابة بعناية</p>
-                            </div>
-                            <div className="bg-danger/10 border border-danger/30 text-danger px-5 py-2 rounded-xl font-black text-xl shadow-inner flex items-center gap-2">
-                                <svg className="w-6 h-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                {Math.floor(timer/60).toString().padStart(2,'0')}:{(timer%60).toString().padStart(2,'0')}
-                            </div>
+                <div className="min-h-screen bg-backgroundLight dark:bg-backgroundDark flex flex-col fixed inset-0 z-[99999] overflow-y-auto">
+                    {/* Header bar fixed */}
+                    <div className="sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 p-4 flex justify-between items-center z-50">
+                        <div>
+                            <h2 className="font-black text-xl">{selectedTest.title}</h2>
+                            <p className="text-xs font-bold text-danger animate-pulse">تنبيه: الخروج من ملء الشاشة يلغي الاختبار</p>
                         </div>
-
-                        <div className="w-full h-1.5 bg-black/10 dark:bg-white/10">
-                            <div className="h-full bg-gradient-to-r from-blue-400 to-primary transition-all duration-500 ease-out" style={{width: `${progress}%`}}></div>
-                        </div>
-                        
-                        <div className="p-8 flex-grow">
-                            <div className="mb-6 flex items-center gap-3">
-                                <span className="bg-primary text-white w-10 h-10 rounded-xl flex items-center justify-center font-black shadow-lg shadow-primary/40">{currentQuestionIndex + 1}</span>
-                                <span className="font-bold opacity-60">من {qs.length} أسئلة</span>
-                            </div>
-
-                            <div className="mb-8">
-                                {q.imageUrl && <img src={q.imageUrl} className="max-h-72 object-contain mx-auto mb-6 rounded-2xl shadow-lg border border-white/30" />}
-                                <h3 className="text-2xl font-bold leading-relaxed"><MathComponent text={q.text} /></h3>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {q.options.map((opt, i) => {
-                                    const isSelected = answers[q.id] === opt.id;
-                                    const letters = ['أ', 'ب', 'ج', 'د'];
-                                    return (
-                                        <button key={opt.id} onClick={()=>setAnswers({...answers, [q.id]: opt.id})} className={`p-4 rounded-2xl border-2 flex items-center gap-4 text-right transition-all duration-300 ${isSelected ? 'bg-primary/10 border-primary shadow-md transform scale-[1.02]' : 'bg-white/40 dark:bg-slate-800/40 border-transparent hover:border-primary/40 hover:bg-white/60 dark:hover:bg-slate-800/60'}`}>
-                                            <div className={`w-8 h-8 rounded-lg flex shrink-0 items-center justify-center font-bold transition-colors ${isSelected ? 'bg-primary text-white' : 'bg-black/10 dark:bg-white/10'}`}>
-                                                {letters[i]}
-                                            </div>
-                                            <div className="font-semibold text-lg flex-grow">
-                                                {opt.imageUrl && <img src={opt.imageUrl} className="h-16 mb-2 rounded-lg" />}
-                                                <MathComponent text={opt.text} />
-                                            </div>
-                                            {isSelected && <svg className="w-6 h-6 text-primary shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>}
-                                        </button>
-                                    )
-                                })}
-                            </div>
-                        </div>
-
-                        <div className="p-6 bg-black/5 dark:bg-white/5 border-t border-white/20 dark:border-slate-700/50 flex justify-between items-center rounded-b-[2.5rem]">
-                            <button onClick={()=>setCurrentQuestionIndex(Math.max(0, currentQuestionIndex-1))} disabled={currentQuestionIndex===0} className="px-6 py-3 rounded-xl font-bold bg-white/50 dark:bg-slate-800/50 hover:bg-white/80 dark:hover:bg-slate-700/80 transition disabled:opacity-30 disabled:cursor-not-allowed">السابق</button>
-                            {currentQuestionIndex === qs.length - 1 ? (
-                                <button onClick={handleSubmitTest} className="px-8 py-3 bg-success text-white rounded-xl font-bold shadow-lg shadow-success/40 hover:-translate-y-1 transition-transform animate-pulse">تسليم الإجابات</button>
-                            ) : (
-                                <button onClick={()=>setCurrentQuestionIndex(currentQuestionIndex+1)} className="glass-btn-primary px-8 py-3 rounded-xl font-bold flex items-center gap-2">
-                                    التالي
-                                </button>
-                            )}
+                        <div className="bg-primary/10 border border-primary/20 text-primary px-4 py-2 rounded-xl font-black text-xl flex items-center gap-2 font-mono">
+                            ⏳ {Math.floor(timer/60).toString().padStart(2,'0')}:{(timer%60).toString().padStart(2,'0')}
                         </div>
                     </div>
+                    
+                    {/* Progress */}
+                    <div className="h-1.5 bg-slate-200 dark:bg-slate-800 w-full"><div className="h-full bg-primary transition-all duration-300" style={{width: `${progress}%`}}></div></div>
+
+                    {/* Question Content */}
+                    <div className="flex-grow p-4 md:p-8 flex flex-col items-center justify-center max-w-4xl mx-auto w-full">
+                        <div className="w-full mb-8 text-center">
+                            <span className="inline-block bg-slate-200 dark:bg-slate-800 px-4 py-1 rounded-full text-sm font-bold opacity-70 mb-6">سؤال {currentQuestionIndex + 1} من {qs.length}</span>
+                            {q.imageUrl && <img src={q.imageUrl} className="max-h-64 object-contain mx-auto mb-6 rounded-2xl shadow border border-slate-200 dark:border-slate-700" alt="سؤال" />}
+                            <h3 className="text-2xl md:text-3xl font-bold leading-relaxed"><MathComponent text={q.text} /></h3>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                            {q.options.map((opt) => {
+                                const isSelected = answers[q.id] === opt.id;
+                                return (
+                                    <button key={opt.id} onClick={()=>setAnswers({...answers, [q.id]: opt.id})} className={`p-5 rounded-2xl border-2 text-right transition-all flex items-center gap-4 ${isSelected ? 'border-primary bg-primary/5 shadow-md scale-[1.01]' : 'border-slate-200 dark:border-slate-700 hover:border-primary/40 bg-white/50 dark:bg-slate-800/50'}`}>
+                                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${isSelected ? 'border-primary bg-primary' : 'border-slate-300'}`}>
+                                            {isSelected && <div className="w-2.5 h-2.5 bg-white rounded-full"></div>}
+                                        </div>
+                                        <div className="font-bold text-lg flex-grow">
+                                            {opt.imageUrl && <img src={opt.imageUrl} className="h-20 mb-2 rounded-lg border border-slate-200" alt="خيار" />}
+                                            <MathComponent text={opt.text} />
+                                        </div>
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Footer bar */}
+                    <div className="sticky bottom-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 p-4 flex justify-between items-center mt-auto z-50">
+                        <button onClick={()=>setCurrentQuestionIndex(Math.max(0, currentQuestionIndex-1))} disabled={currentQuestionIndex===0} className="px-6 py-3 rounded-xl font-bold bg-slate-200 dark:bg-slate-800 disabled:opacity-30 transition">السابق</button>
+                        {currentQuestionIndex === qs.length - 1 ? (
+                            <button onClick={()=>handleSubmitTest(false)} className="px-8 py-3 bg-success text-white rounded-xl font-bold shadow-lg hover:shadow-success/50 transition transform hover:-translate-y-1">تسليم الاختبار</button>
+                        ) : (
+                            <button onClick={()=>setCurrentQuestionIndex(currentQuestionIndex+1)} className="glass-btn-primary px-8 py-3 rounded-xl font-bold">التالي</button>
+                        )}
+                    </div>
                 </div>
-            );
+            )
         };
 
         const renderResults = () => {
-             const qs = flattenQuestions(selectedTest.sections);
-             const score = qs.filter(q => answers[q.id] === q.correctAnswer).length;
-             const isPass = score >= (qs.length / 2);
+            const qs = selectedTest.questions;
+            const score = isExamCancelled ? 0 : qs.filter(q => answers[q.id] === q.correctAnswer).length;
+            const isPass = score >= (qs.length / 2) && !isExamCancelled;
 
-             return (
-                 <div className="min-h-screen p-4 flex items-center justify-center relative">
-                     <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] rounded-full filter blur-[120px] opacity-30 ${isPass ? 'bg-success' : 'bg-warning'}`}></div>
-
-                     <div className="glass-panel p-10 rounded-[3rem] shadow-2xl text-center max-w-lg w-full relative z-10 animate-fade-in-up">
-                         <div className={`w-32 h-32 mx-auto rounded-full flex items-center justify-center text-6xl mb-6 shadow-xl ${isPass ? 'bg-gradient-to-br from-success to-emerald-400 shadow-success/40' : 'bg-gradient-to-br from-warning to-orange-400 shadow-warning/40'}`}>
-                             {isPass ? '🏆' : '📚'}
-                         </div>
-                         <h2 className="text-4xl font-black mb-3">انتهى الاختبار!</h2>
-                         <p className="opacity-70 font-medium text-lg mb-8">اختبار: <span className="font-bold">{selectedTest.title}</span></p>
+            return (
+                 <div className="min-h-screen flex items-center justify-center p-4">
+                     <div className="glass-panel p-10 md:p-14 rounded-[3rem] text-center max-w-lg w-full animate-fade-in shadow-2xl">
+                         {isExamCancelled ? (
+                             <div className="w-24 h-24 mx-auto rounded-full bg-danger text-white flex items-center justify-center text-4xl mb-6 shadow-lg shadow-danger/40 animate-bounce">⚠️</div>
+                         ) : (
+                             <div className={`w-24 h-24 mx-auto rounded-full flex items-center justify-center text-5xl mb-6 shadow-lg ${isPass ? 'bg-success text-white shadow-success/40' : 'bg-warning text-white shadow-warning/40'}`}>
+                                 {isPass ? '🏆' : '📚'}
+                             </div>
+                         )}
                          
-                         <div className="bg-black/5 dark:bg-white/5 rounded-3xl p-8 mb-8 border border-white/20 dark:border-slate-700/50">
-                             <p className="text-sm font-bold uppercase tracking-widest opacity-60 mb-2">النتيجة النهائية</p>
-                             <div className="flex justify-center items-baseline gap-2">
-                                <p className={`text-7xl font-black ${isPass ? 'text-success' : 'text-warning'}`}>{score}</p>
+                         <h2 className="text-3xl md:text-4xl font-black mb-2">{isExamCancelled ? 'تم إلغاء الاختبار!' : 'انتهى الاختبار'}</h2>
+                         <p className="opacity-70 font-medium mb-8">{isExamCancelled ? 'لقد قمت بالخروج من وضع ملء الشاشة' : `اختبار: ${selectedTest.title}`}</p>
+                         
+                         <div className="bg-slate-100 dark:bg-slate-800/50 rounded-3xl p-8 mb-8">
+                             <p className="text-sm font-bold uppercase opacity-60 mb-2">نتيجتك النهائية</p>
+                             <div className="flex justify-center items-baseline gap-2" dir="ltr">
                                 <span className="text-3xl font-bold opacity-40">/ {qs.length}</span>
+                                <p className={`text-7xl font-black ${isExamCancelled ? 'text-danger' : (isPass ? 'text-success' : 'text-warning')}`}>{score}</p>
                              </div>
                          </div>
 
-                         <button onClick={()=>setCurrentPage('dashboard')} className="glass-btn-primary w-full py-4 rounded-xl text-lg font-bold shadow-xl flex justify-center items-center gap-2">
-                             العودة للوحة القيادة
-                             <svg className="w-5 h-5 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                         </button>
+                         <button onClick={()=>{setCurrentPage('dashboard'); setIsExamCancelled(false);}} className="glass-btn-primary w-full py-4 rounded-xl text-lg font-bold shadow-xl">العودة للوحة القيادة</button>
                      </div>
                  </div>
-             )
+            )
         };
 
+        // Router
         switch (currentPage) {
-            case 'login': return renderLogin();
-            case 'dashboard': return currentUser.role === 'student' ? renderStudentDashboard() : renderTeacherDashboard();
-            case 'test': return renderTestPage();
+            case 'login': case 'register': return renderLogin();
+            case 'profileSetup': return renderProfileSetup();
+            case 'dashboard': return currentUser.role === 'student' ? renderStudentDashboard() : renderAdminDashboard();
+            case 'test': return renderTestRunner();
             case 'results': return renderResults();
             default: return renderLogin();
         }
